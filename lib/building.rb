@@ -1,28 +1,42 @@
+require_relative 'apartment'
+
 class Building
+  attr_reader :address, :total_apartments
 
-  def initialize(number:, street:, city:)
-    @number, @street, @city = number, street, city
+  def initialize(address:)
+    @address = address
+    @total_apartments = []
   end
 
-  def add_apartment
+  def add_apartment(apartment)
+    @total_apartments << apartment
   end
 
-  def remove_apartment(number)
+=begin
+  def remove_apartment(number, )
 
-    raise "Number not found or apartment current has tenants"
+    raise "Number not found or apartment currently has tenants"
   end
+=end
 
   def total_area
+    @total_apartments.map { |appt| appt.sq_footage }.reduce(0, &:+)
   end
 
   def total_revenue
+    @total_apartments.map { |appt| appt.rent }.reduce(0, &:+)
   end
 
   def tenants_list
+    total_tenants = []
+    @total_apartments.map { |appt| total_tenants.concat(appt.tenants) }
+    total_tenants
   end
 
+=begin
   def apartments_by_credit_rating
   end
+=end
 
 end
 
