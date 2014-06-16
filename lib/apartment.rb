@@ -1,23 +1,46 @@
+require_relative 'tenant'
 class Apartment
+  attr_reader :number, :rent, :square_feet, :bedrooms, :bathrooms
 
-  def initialize(number:, rent:, :square_feet, bedrooms:, bathrooms:)
-    @number, @rent, @square_feet, @bedrooms, @bathrooms = number, rent, square_feet, bedrooms, bathrooms
+  def initialize(number:, rent:, square_feet:, bedrooms:, bathrooms:)
+    @number = number
+    @rent = rent
+    @square_feet = square_feet
+    @bedrooms = bedrooms
+    @bathrooms = bathrooms
+    @total_tenants = []
   end
 
-  def add_tenant
+  def add_tenant(new_tenant)
+    if new_tenant.credit_rating == "bad"
+      raise "Bad credit rating"
+    elsif @total_tenants.count >= @bedrooms
+      raise "Too many tenants"
+    else
+      @total_tenants << new_tenant
+    end
   end
 
-  def remove_tenant
+  def remove_tenant(tenant)
+    if @total_tenants.include?(tenant)
+      @total_tenants.delete(tenant)
+    else
+      raise "Tenant not found"
   end
 
   def remove_all
+    @total_tenants.clear
   end
 
   def avg_credit_score
+    @total_tenants.map { |tenant| tenant.credit_score }.reduce(0, &:+) / @total_tenants.count
   end
 
+=begin
   def credit_rating
+    avg_score = avg_credit_score
   end
+=end
 
 end
 
