@@ -7,13 +7,13 @@ class Tenant
   end
 
   def credit_rating
-    if credit_score > 760
+    if @credit_score >= 760
       "excellent"
-    elsif credit_score >725
+    elsif @credit_score >= 725
       "great"
-    elsif credit_score > 600
+    elsif @credit_score >= 600
       "good"
-    elsif credit_score > 560
+    elsif @credit_score >= 560
       "mediocre"
     else
       "bad"
