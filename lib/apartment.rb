@@ -50,7 +50,7 @@ end
 has a number, rent, square footage, number of bedrooms, and number of bathrooms
 #B-Instance variables
 has many tenants
-#B-Tenant is a subclass of apartment
+#B-Apartment requires tenant
 the list of tenants should not be modified directly (bonus: actually prevent it from being modified directly)
 #B-Private? At very least, not attr_accessor
 has a method to add a tenant that raises an error if the tenant has a "bad" credit rating, or if the new tenant count would go over the number of bedrooms
